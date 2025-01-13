@@ -1,0 +1,32 @@
+o day se viet tieng viet voi muc dich len y tuong
+----------------------------------------File home --------------------------------------------------
+dau tienn mik se tao 1 class la home-> day la home nhung cua admin( vi no nam trong package admin)
+sau do minh se extend class home thanh mot jframe
+minh setup cho cai theo format layout
+
+---------------------------------------- south-------------------------------------------------
++ Trong nay minh se tao mot format menu co trong thu vien java co ten la menubar, trong menubar thi minh se
+tao mot bieu tuong ten la menu( dung Jmenu)
++ Sau do minh se tao them mot menuPanel de bo vao menu, va minh setup menPanel la gridbaglayout de them vao cho de
++ minh tao them mot muc co ten homeButton, va managerButton de them vao menuPanel
+    - minh se su dung:
+                   . managerButton.setFont(fontFunction); //xet kich thuoc to len cho de nhin
+                   . managerButton.setFocusPainted(false);// xoa khung o vuong bo vien khung chu
+
+tom lai so do cua mik se nhu sau Menubar(menu)-> menuPanel(gridbaglayout)-> homeButton, managerButton
+
+---------------------------------------- Center ------------------------------------------------
++ Trong này mình sẽ tạo panelCard mục tiêu là để lật thẻ
+    + Mình sẽ tạo một panelDefaultPage, setup panelCard với tiêu đề là(default):
+        - mình sẽ tao một panelHeader, setup cho nó theo kieu flowlayout, đẩy vào panelDefaultPage
+              . trong panelHeader mình sẽ tạo một label là labelHeader để chèn vào câu tiêu đề
+
+    + Mình sẽ tạo một panelManagerPage, setup cho nó theo borderlayout với tiêu đề là(manager):
+       - Mình sẽ tạo một pupilTable được nhét trong jcrolPane đẩy nó phần center mục panelManagerPage
+       - Mình sẽ tạo một panelTitleFiled để chứa các chức năng, bỏ vào phần North của panelManagerPage
+               . trong panelTitleFilter mình sẽ tạo một là panelFunctionAndFilter
+                    * trong panelFunctionAndFilter mình sẽ có panelNorthFunction(north) và panelFilterFunction(center)
+                         . trong panelNorthFunction sẽ bao gồm các chức năng như thêm, xóa
+                    * trong panelFilterFunction sẽ bao gồm các chức năng như tìm kiếm
+       sơ đồ panelManagerPage(borderlayout)-> panelTitleFiled(north), pupilTable(center)
+sơ đồ panelCard-> panelDefaultPage(default), panelManagerPage(manager)
