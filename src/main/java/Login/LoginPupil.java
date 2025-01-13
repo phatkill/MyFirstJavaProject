@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LoginPupil extends JFrame {
-    public LoginPupil(){
+    public LoginPupil() {
         this.init();
         this.setVisible(true);
     }
-    public void init(){
+
+    public void init() {
         setTitle("Login Pupil");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 400);
+        setSize(700, 400);
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new BorderLayout());
@@ -39,6 +40,7 @@ public class LoginPupil extends JFrame {
         loginPanel.add(lbuserName, gbc);
         gbc.gridx = 1;
         JTextField txtuserName = new JTextField();
+        txtuserName.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(txtuserName, gbc);
         txtuserName.setPreferredSize(new Dimension(200, 30));
         // mat khau
@@ -53,22 +55,33 @@ public class LoginPupil extends JFrame {
         txtPassword.setPreferredSize(new Dimension(200, 30));
         loginPanel.add(txtPassword, gbc);
 
-
         //--------------- con mat ----------------
+        // con mắt
         gbc.gridx = 2;
-        JButton buttonToggleVisibility = new JButton("👁️");
-//        buttonToggleVisibility.setPreferredSize(new Dimension(100, 30)); // Kích thước vừa với trường
-        buttonToggleVisibility.setFocusPainted(false);
-        buttonToggleVisibility.setContentAreaFilled(false);
+        // Tạo các ImageIcon từ tài nguyên
+        ImageIcon eyeOpen = new ImageIcon(
+                new ImageIcon(getClass().getResource("/eyeCLose.png"))
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH) // Điều chỉnh kích thước tại đây
+        );
+        ImageIcon eyeClose = new ImageIcon(
+                new ImageIcon(getClass().getResource("/eyeOpen.png"))
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH) // Điều chỉnh kích thước tại đây
+        );
+        JButton buttonToggleVisibility = new JButton(eyeOpen);
+        buttonToggleVisibility.setFocusPainted(false);  // Bỏ viền khi nút có tiêu điểm
+        buttonToggleVisibility.setContentAreaFilled(false);  // Bỏ nền cho nút
+        buttonToggleVisibility.setBorderPainted(false);  // Bỏ viền của nút
         loginPanel.add(buttonToggleVisibility, gbc);
-        /// xu li con mat
+
         buttonToggleVisibility.addActionListener(e -> {
             if (txtPassword.getEchoChar() == 0) {
-                txtPassword.setEchoChar('\u2022');
-                buttonToggleVisibility.setText("🔒"); // Biểu tượng đóng
+                txtPassword.setEchoChar('\u2022');  // Đặt lại mật khẩu có dấu chấm
+                buttonToggleVisibility.setIcon(eyeOpen);  // Sử dụng eyeOpen icon
             } else {
-                txtPassword.setEchoChar((char) 0);
-                buttonToggleVisibility.setText("👁️"); // Biểu tượng mở
+                txtPassword.setEchoChar((char) 0);  // Mật khẩu không có dấu chấm
+                buttonToggleVisibility.setIcon(eyeClose);  // Sử dụng eyeClose icon
             }
         });
 
@@ -90,13 +103,14 @@ public class LoginPupil extends JFrame {
         buttonForgetPassword.setForeground(Color.BLUE); // Đặt màu chữ
         loginPanel.add(buttonForgetPassword, gbc);
         /// nut bam dang nhap
-        buttonLogin.addActionListener(e->{
+        buttonLogin.addActionListener(e -> {
             String userName = txtuserName.getText();
             String password = txtPassword.getText();
             Query query = new Query();
             query.LoginUser(userName, password);
         });
     }
+
     public static void main(String[] args) {
         new LoginPupil();
     }

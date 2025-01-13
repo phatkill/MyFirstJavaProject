@@ -1,17 +1,19 @@
 package Login;
 
+import ViewHome.Home;
+
 import javax.swing.*;
 import java.awt.*;
 //thu vien them mail
-import javax.mail.internet.*;
-import java.util.Properties;
+
 
 public class LoginAdmin extends JFrame {
-    public LoginAdmin(){
+    public LoginAdmin() {
         this.init();
         this.setVisible(true);
     }
-    public void init(){
+
+    public void init() {
         setTitle("Login Admin");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -57,22 +59,27 @@ public class LoginAdmin extends JFrame {
         txtPassword.setPreferredSize(new Dimension(200, 30));
         loginPanel.add(txtPassword, gbc);
 
+        // ------------- tao bieu do con mat ------------------------
+        // Tạo biểu tượng cho nút
+        ImageIcon eyeOpenIcon = new ImageIcon(new ImageIcon("path_to_eye_open_image.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
+        ImageIcon eyeClosedIcon = new ImageIcon(new ImageIcon("path_to_eye_closed_image.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
 
         //--------------- con mat ----------------
         gbc.gridx = 2;
-        JButton buttonToggleVisibility = new JButton("👁️");
-//        buttonToggleVisibility.setPreferredSize(new Dimension(100, 30)); // Kích thước vừa với trường
+        JButton buttonToggleVisibility = new JButton(eyeOpenIcon);
         buttonToggleVisibility.setFocusPainted(false);
         buttonToggleVisibility.setContentAreaFilled(false);
+        buttonToggleVisibility.setBorderPainted(false); // Tắt khung viền của nút
         loginPanel.add(buttonToggleVisibility, gbc);
-        /// xu li con mat
+
+        // Xử lý sự kiện con mắt
         buttonToggleVisibility.addActionListener(e -> {
             if (txtPassword.getEchoChar() == 0) {
                 txtPassword.setEchoChar('\u2022');
-                buttonToggleVisibility.setText("🔒"); // Biểu tượng đóng
+                buttonToggleVisibility.setIcon(eyeClosedIcon); // Biểu tượng đóng
             } else {
                 txtPassword.setEchoChar((char) 0);
-                buttonToggleVisibility.setText("👁️"); // Biểu tượng mở
+                buttonToggleVisibility.setIcon(eyeOpenIcon); // Biểu tượng mở
             }
         });
 
@@ -96,15 +103,15 @@ public class LoginAdmin extends JFrame {
         // ---------------- xu li dang nhap ----------------
         String tkAdmin = "phatkill";
         String mkAdmin = "phatofbug";
-        buttonLogin.addActionListener(e->{
+        buttonLogin.addActionListener(e -> {
             String userName = txtuserName.getText();
             String password = txtPassword.getText();
             Query query = new Query();
-            if (userName.equals(tkAdmin) && password.equals(mkAdmin)){
+            if (userName.equals(tkAdmin) && password.equals(mkAdmin)) {
                 JOptionPane.showMessageDialog(null, "Login Success");
-                new AdminHome.Home();
+                new Home();
                 dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Login Failed");
             }
         });

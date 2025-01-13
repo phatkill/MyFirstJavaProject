@@ -1,4 +1,5 @@
 package Login;
+
 import javax.mail.*;  // Import các lớp từ thư viện javax.mail (cần thiết cho việc gửi email)
 import javax.mail.internet.*;  // Import các lớp để xử lý các đối tượng email (ví dụ MimeMessage)
 import java.util.Properties;  // Import lớp Properties để cấu hình các thuộc tính khi kết nối SMTP

@@ -28,13 +28,16 @@ public class Query {
             "ON HOCSINH.MAHS = DIEM.MAHS;";
 
     // add Pupil and Score
-    private String insertPupil = "INSERT INTO HOCSINH (MAHS, HODEM, TEN, NGAYSINH, GIOITINH, NOISINHSONG, DIACHI, SODIENTHOAI, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private String insertScore = "INSERT INTO DIEM (MAHS, DIEM_TOAN, DIEM_VAN, DIEM_ANH, DIEM_VAT_LY_OR_LICH_SU, DIEM_HOA_HOC_OR_DIA_LY, DIEM_SINH_HOC_OR_GDCD) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private String insertPupil = "INSERT INTO HOCSINH (MAHS, HODEM, TEN, NGAYSINH, GIOITINH, NOISINHSONG, DIACHI, SODIENTHOAI, EMAIL)" +
+            " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private String insertScore = "INSERT INTO DIEM (MAHS, DIEM_TOAN, DIEM_VAN, DIEM_ANH, DIEM_VAT_LY_OR_LICH_SU, DIEM_HOA_HOC_OR_DIA_LY, DIEM_SINH_HOC_OR_GDCD)" +
+            " VALUES (?, ?, ?, ?, ?, ?, ?)";
     private String insertUser = "INSERT INTO TAIKHOAN (MAHS, CCCD, password) VALUES (?, ?, ?)";
     // delete all pupil information and grades based on MAHS
     private String deleteSelectPupils =
-            "DELETE DIEM " +
-            "FROM DIEM " +
+            "DELETE TAIKHOAN FROM TAIKHOAN" +
+            " JOIN HOCSINH ON HOCSINH.MAHS = DIEM.MAHS" +
+            "DELETE DIEM FROM DIEM " +
             "JOIN HOCSINH ON HOCSINH.MAHS = DIEM.MAHS " +
             "WHERE DIEM.MAHS = ?; " +
 
