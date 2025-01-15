@@ -1,4 +1,6 @@
-package AdminHome;
+package Model;
+
+import AdminHome.Query;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,7 +12,7 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor 
     private int row;
     public ButtonEditor(JCheckBox checkBox) {
         buttonEdit = new JButton();
-        buttonEdit.setText("Chỉnh sửa");
+        buttonEdit.setText("sửa");
         buttonEdit.addActionListener(e->{
             if (table != null && row >= 0) {
                 Query q = new Query();

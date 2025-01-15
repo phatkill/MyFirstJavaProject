@@ -41,7 +41,7 @@ public class Home extends JFrame {
 
         // Cấu hình GridBagConstraints để điều chỉnh vị trí các thành phần trong panel
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.WEST;
 
         // Lấy thông tin cá nhân từ cơ sở dữ liệu và hiển thị lên giao diện
@@ -68,24 +68,22 @@ public class Home extends JFrame {
                 this.DIEM_VAT_LY_OR_LICH_SU = resultSet.getFloat("DIEM_VAT_LY_OR_LICH_SU");
                 this.DIEM_HOAHOC = resultSet.getFloat("DIEM_HOA_HOC_OR_DIA_LY");
                 this.DIEM_SINHHOC = resultSet.getFloat("DIEM_SINH_HOC_OR_GDCD");
-
-                // Gọi phương thức để hiển thị các thông tin lên giao diện
-                addLabelAndValue(infoPanel, gbc, 0, "Mã HS:", this.MAHS);
-                addLabelAndValue(infoPanel, gbc, 1, "Họ đệm:", this.HODEM);
-                addLabelAndValue(infoPanel, gbc, 2, "Tên:", this.TEN);
-                addLabelAndValue(infoPanel, gbc, 3, "Ngày sinh:", this.NGAYSINH.toString());
-                addLabelAndValue(infoPanel, gbc, 4, "Giới tính:", this.GIOITINH);
-                addLabelAndValue(infoPanel, gbc, 5, "Nơi sinh:", this.NOISINHSONG);
-                addLabelAndValue(infoPanel, gbc, 6, "Địa chỉ:", this.DIACHI);
-                addLabelAndValue(infoPanel, gbc, 7, "Số điện thoại:", this.SODIENTHOAI);
-                addLabelAndValue(infoPanel, gbc, 8, "Email:", this.EMAIL);
-                addLabelAndValue(infoPanel, gbc, 9, "Điểm Toán:", Float.toString(this.DIEM_TOAN));
-                addLabelAndValue(infoPanel, gbc, 10, "Điểm Văn:", Float.toString(this.DIEM_VAN));
-                addLabelAndValue(infoPanel, gbc, 11, "Điểm Anh:", Float.toString(this.DIEM_ANH));
-                addLabelAndValue(infoPanel, gbc, 12, "Điểm Vật Lý:", Float.toString(this.DIEM_VAT_LY_OR_LICH_SU));
-                addLabelAndValue(infoPanel, gbc, 13, "Điểm Hóa Học:", Float.toString(this.DIEM_HOAHOC));
-                addLabelAndValue(infoPanel, gbc, 14, "Điểm Sinh Học:", Float.toString(this.DIEM_SINHHOC));
-
+                Font font = new Font("Arial", Font.PLAIN, 18); // Kích thước chữ là 18
+                addLabelAndValue(infoPanel, gbc, 0, "Mã HS:", this.MAHS, font);
+                addLabelAndValue(infoPanel, gbc, 1, "Họ đệm:", this.HODEM, font);
+                addLabelAndValue(infoPanel, gbc, 2, "Tên:", this.TEN, font);
+                addLabelAndValue(infoPanel, gbc, 3, "Ngày sinh:", this.NGAYSINH.toString(), font);
+                addLabelAndValue(infoPanel, gbc, 4, "Giới tính:", this.GIOITINH, font);
+                addLabelAndValue(infoPanel, gbc, 5, "Nơi sinh:", this.NOISINHSONG, font);
+                addLabelAndValue(infoPanel, gbc, 6, "Địa chỉ:", this.DIACHI, font);
+                addLabelAndValue(infoPanel, gbc, 7, "Số điện thoại:", this.SODIENTHOAI, font);
+                addLabelAndValue(infoPanel, gbc, 8, "Email:", this.EMAIL, font);
+                addLabelAndValue(infoPanel, gbc, 9, "Điểm Toán:", Float.toString(this.DIEM_TOAN), font);
+                addLabelAndValue(infoPanel, gbc, 10, "Điểm Văn:", Float.toString(this.DIEM_VAN), font);
+                addLabelAndValue(infoPanel, gbc, 11, "Điểm Anh:", Float.toString(this.DIEM_ANH), font);
+                addLabelAndValue(infoPanel, gbc, 12, "Điểm Vật Lý:", Float.toString(this.DIEM_VAT_LY_OR_LICH_SU), font);
+                addLabelAndValue(infoPanel, gbc, 13, "Điểm Hóa Học:", Float.toString(this.DIEM_HOAHOC), font);
+                addLabelAndValue(infoPanel, gbc, 14, "Điểm Sinh Học:", Float.toString(this.DIEM_SINHHOC), font);
             } else {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin cá nhân với mã học sinh này: " + MAHS);
             }
@@ -98,13 +96,17 @@ public class Home extends JFrame {
     }
 
     // Phương thức giúp thêm nhãn và giá trị vào panel
-    private void addLabelAndValue(JPanel panel, GridBagConstraints gbc, int yPos, String labelText, String valueText) {
+    private void addLabelAndValue(JPanel panel, GridBagConstraints gbc, int row, String label, String value, Font font) {
+        JLabel lbl = new JLabel(label);
+        JLabel val = new JLabel(value);
+        // Áp dụng font đã tạo cho nhãn
+        lbl.setFont(font);
+        val.setFont(font);
         gbc.gridx = 0;
-        gbc.gridy = yPos;
-        panel.add(new JLabel(labelText), gbc);
-
+        gbc.gridy = row;
+        panel.add(lbl, gbc);
         gbc.gridx = 1;
-        panel.add(new JLabel(valueText), gbc);
+        panel.add(val, gbc);
     }
 
 }

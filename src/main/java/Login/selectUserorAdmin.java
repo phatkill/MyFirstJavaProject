@@ -31,7 +31,7 @@ public class selectUserorAdmin extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL; // Kéo dài nút theo chiều ngang
 
         // Tạo nút "người dùng"
-        JButton buttonPupil = new JButton("người dùng");
+        JButton buttonPupil = new JButton("Người dùng");
         buttonPupil.setFont(new Font("Arial", Font.BOLD, 40));
         buttonPupil.setBackground(Color.GREEN);
         buttonPupil.setPreferredSize(new Dimension(400, 300)); // Kích thước nút
@@ -41,7 +41,7 @@ public class selectUserorAdmin extends JFrame {
             dispose();
         });
         // Tạo nút "admin"
-        JButton buttonAdmin = new JButton("admin");
+        JButton buttonAdmin = new JButton("Admin");
         buttonAdmin.setFont(new Font("Arial", Font.BOLD, 40));
         buttonAdmin.setBackground(Color.CYAN);
         buttonAdmin.setPreferredSize(new Dimension(400, 300)); // Kích thước nút

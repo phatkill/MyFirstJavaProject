@@ -11,15 +11,16 @@ public class DefaultPage extends JPanel {
     public DefaultPage() {
         // Set layout for the panel
         setLayout(new BorderLayout());
-
         // Create header panel
         JPanel panelHeader = new JPanel();
         panelHeader.setLayout(new FlowLayout());
         panelHeader.setPreferredSize(new Dimension(panelHeader.getWidth(), 100));
         JLabel labelHeader = new JLabel("Xin chào Admin");
+        labelHeader.setForeground(new Color(10, 20, 165));
         labelHeader.setFont(new Font("romantic", Font.BOLD, 50));
         panelHeader.add(labelHeader);
         add(panelHeader, BorderLayout.NORTH);
+
 
         // Create main panel
         JPanel mainPanel = new JPanel();
@@ -48,7 +49,7 @@ public class DefaultPage extends JPanel {
             // Insert body text
             doc.insertString(doc.getLength(),
                     "Đầu tiên khi bạn nhìn vào sẽ thấy ba nút, mỗi nút có một chức năng riêng, hãy cùng tôi điểm qua chức năng đầu tiên, Đó là chức năng mặc định:\n" +
-                            "    - Chức năng này sẽ giúp bạn biết cách dùng app\n" +
+                            "    - page này sẽ giúp bạn biết cách dùng app\n" +
                             "Tiếp theo là chức năng quản lí trang chủ:\n" +
                             "    - Giúp bạn đọc bảng và chỉnh sửa nó theo ý muốn của bạn( thêm, xóa, sửa)\n" +
                             "Cuối cùng là biểu đồ:\n" +

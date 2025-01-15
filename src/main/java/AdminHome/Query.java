@@ -1,5 +1,6 @@
 package AdminHome;
 
+import Model.ButtonEditor;
 import Model.ButtonRenderer;
 
 import javax.swing.*;
@@ -14,6 +15,12 @@ import javax.swing.JOptionPane;
 public class Query {
     // --------------------------------------------------------Đây là của SQL -------------------------------------------------------------------
 
+    // sort pupil information
+    private String sortAllPupils = "SELECT * \n" +
+            "FROM HOCSINH \n" +
+            "JOIN DIEM \n" +
+            "ON HOCSINH.MAHS = DIEM.MAHS \n" +
+            "ORDER BY TEN ASC;";
     // Update pupil information
     private String updatePupilandScore = "UPDATE HOCSINH \n" +
             "SET HODEM = ?, TEN = ?, NGAYSINH = ?, GIOITINH = ?, NOISINHSONG = ?, DIACHI = ?, SODIENTHOAI = ?, EMAIL = ? \n" +
@@ -40,7 +47,6 @@ public class Query {
             "DELETE DIEM FROM DIEM " +
             "JOIN HOCSINH ON HOCSINH.MAHS = DIEM.MAHS " +
             "WHERE DIEM.MAHS = ?; " +
-
             "DELETE HOCSINH " +
             "FROM HOCSINH " +
             "WHERE HOCSINH.MAHS = ?;";
@@ -132,6 +138,67 @@ public class Query {
             throw new RuntimeException(e);
         }
 
+    }
+    public void setSortAllPupils(JTable table) {
+
+        // -------------------------add edit button ----------------------
+        try (Connection con = JDBCConnect.getConnection()) {
+            DefaultTableModel model = new DefaultTableModel() {
+                public boolean isCellEditable(int row, int column) {
+                    return (column == 16 || column == 17);
+                }
+                @Override
+                public Class<?> getColumnClass(int column) {
+                    return column == 16 ? Boolean.class : (column == 17 ? JButton.class : Object.class); // Cột 16 là cột checkbox
+                }
+            };
+            model.addColumn("STT");
+            model.addColumn("Mã học sinh");
+            model.addColumn("Họ đệm");
+            model.addColumn("Tên");
+            model.addColumn("Ngày sinh");
+            model.addColumn("Giới tính");
+            model.addColumn("Nơi ở");
+            model.addColumn("Địa chỉ");
+            model.addColumn("Số điện thoại");
+            model.addColumn("Email");
+            model.addColumn("Điểm toán");
+            model.addColumn("Điểm văn");
+            model.addColumn("Điểm anh");
+            model.addColumn("điểm vật lí/lịch sử");
+            model.addColumn("điểm hóa/địa");
+            model.addColumn("điểm môn sinh/GDCD");
+            model.addColumn("Chọn");
+            model.addColumn("Chỉnh Sửa");
+            ButtonRenderer editPupil = new ButtonRenderer();
+            ButtonEditor editPupilButton = new ButtonEditor(new JCheckBox());
+            table.setModel(model);
+            int stt = 1;
+            ResultSet rs = con.createStatement().executeQuery(sortAllPupils);
+            while (rs.next()) {
+                MAHS = rs.getString("MAHS");
+                HODEM = rs.getString("HODEM");
+                TEN = rs.getString("TEN");
+                NGAYSINH = rs.getDate("NGAYSINH");
+                GIOITINH = rs.getString("GIOITINH");
+                NOISINHSONG = rs.getString("NOISINHSONG");
+                DIACHI = rs.getString("DIACHI");
+                SODIENTHOAI = rs.getString("SODIENTHOAI");
+                EMAIL = rs.getString("EMAIL");
+                DIEM_TOAN = rs.getFloat("DIEM_TOAN");
+                DIEM_VAN = rs.getFloat("DIEM_VAN");
+                DIEM_ANH = rs.getFloat("DIEM_ANH");
+                DIEM_VATLI_OR_LICHSU = rs.getFloat("DIEM_VAT_LY_OR_LICH_SU");
+                DIEM_HOAHOC_OR_DIALI = rs.getFloat("DIEM_HOA_HOC_OR_DIA_LY");
+                DIEM_SINHHOC_OR_GDCD = rs.getFloat("DIEM_SINH_HOC_OR_GDCD");
+                model.addRow(new Object[]{stt, MAHS, HODEM, TEN, NGAYSINH, GIOITINH, NOISINHSONG, DIACHI, SODIENTHOAI, EMAIL, DIEM_TOAN, DIEM_VAN, DIEM_ANH, DIEM_VATLI_OR_LICHSU, DIEM_HOAHOC_OR_DIALI, DIEM_SINHHOC_OR_GDCD, false});
+                table.getColumnModel().getColumn(17).setCellRenderer(editPupil);
+                table.getColumnModel().getColumn(17).setCellEditor(editPupilButton);
+                stt++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void DeleteSelectPupil(JTable table) {
@@ -591,7 +658,7 @@ public class Query {
                 pstTk.executeUpdate();
             }
             JOptionPane.showMessageDialog(dialog, "Thêm thành công", " Chúc mừng", JOptionPane.INFORMATION_MESSAGE);
-            showAllPupil(table);
+//            showAllPupil(table);
             dialog.dispose();
         } catch (SQLException e) {
             throw new RuntimeException(e);

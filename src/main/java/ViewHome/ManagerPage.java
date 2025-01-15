@@ -108,7 +108,7 @@ public class ManagerPage extends JPanel {
 
         // ------------- Tạo thêm nút chức năng load lại ------------------------------------
         Button reloadButton = new Button();
-        reloadButton.setText("tải lại bảng");
+        reloadButton.setText("Tải lại bảng");
         reloadButton.setFont(fontFunction);
         reloadButton.setBackground(new Color(237, 27, 27));
         reloadButton.setForeground(new Color(255, 255, 255, 255));
@@ -120,10 +120,26 @@ public class ManagerPage extends JPanel {
         {
             q.showAllPupil(pupilTable);
         });
-    }
 
+//         ------------ Tạo thêm nút sắp xếp theo tên -----------------
+        Button  sortButton = new Button();
+        sortButton.setText("Sắp xếp theo tên ");
+        sortButton.setFont(fontFunction);
+        sortButton.setBackground(new Color(27, 55, 237));
+        sortButton.setForeground(new Color(255, 255, 255, 255));
+        sortButton.setPreferredSize(new Dimension(300, 50));
+        sortButton.setFocusPainted(false);
+        panelNorthFunction.add(sortButton);
+        sortButton.addActionListener(e->{
+            q.setSortAllPupils(pupilTable);
+        });
+    }
     // Phương thức để lấy bảng học sinh
     public static JTable getPupilTable() {
         return pupilTable;
+    }
+
+    public static void main(String[] args) {
+        new ManagerPage(new Home());
     }
 }

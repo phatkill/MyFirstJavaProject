@@ -16,7 +16,7 @@ public class LoginAdmin extends JFrame {
     public void init() {
         setTitle("Login Admin");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(700, 400);
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(new BorderLayout());
@@ -47,6 +47,7 @@ public class LoginAdmin extends JFrame {
         JTextField txtuserName = new JTextField();
         loginPanel.add(txtuserName, gbc);
         txtuserName.setPreferredSize(new Dimension(200, 30));
+        txtuserName.setFont(new Font("Arial", Font.PLAIN, 20));
         // mat khau
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -59,35 +60,44 @@ public class LoginAdmin extends JFrame {
         txtPassword.setPreferredSize(new Dimension(200, 30));
         loginPanel.add(txtPassword, gbc);
 
-        // ------------- tao bieu do con mat ------------------------
-        // Tạo biểu tượng cho nút
-        ImageIcon eyeOpenIcon = new ImageIcon(new ImageIcon("path_to_eye_open_image.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
-        ImageIcon eyeClosedIcon = new ImageIcon(new ImageIcon("path_to_eye_closed_image.png").getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH));
 
         //--------------- con mat ----------------
+        // con mắt
         gbc.gridx = 2;
-        JButton buttonToggleVisibility = new JButton(eyeOpenIcon);
-        buttonToggleVisibility.setFocusPainted(false);
-        buttonToggleVisibility.setContentAreaFilled(false);
-        buttonToggleVisibility.setBorderPainted(false); // Tắt khung viền của nút
+        // Tạo các ImageIcon từ tài nguyên
+        ImageIcon eyeOpen = new ImageIcon(
+                new ImageIcon(getClass().getResource("/eyeCLose.png"))
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH) // Điều chỉnh kích thước tại đây
+        );
+        ImageIcon eyeClose = new ImageIcon(
+                new ImageIcon(getClass().getResource("/eyeOpen.png"))
+                        .getImage()
+                        .getScaledInstance(50, 50, Image.SCALE_SMOOTH) // Điều chỉnh kích thước tại đây
+        );
+        JButton buttonToggleVisibility = new JButton(eyeOpen);
+        buttonToggleVisibility.setFocusPainted(false);  // Bỏ viền khi nút có tiêu điểm
+        buttonToggleVisibility.setContentAreaFilled(false);  // Bỏ nền cho nút
+        buttonToggleVisibility.setBorderPainted(false);  // Bỏ viền của nút
         loginPanel.add(buttonToggleVisibility, gbc);
 
-        // Xử lý sự kiện con mắt
         buttonToggleVisibility.addActionListener(e -> {
             if (txtPassword.getEchoChar() == 0) {
-                txtPassword.setEchoChar('\u2022');
-                buttonToggleVisibility.setIcon(eyeClosedIcon); // Biểu tượng đóng
+                txtPassword.setEchoChar('\u2022');  // Đặt lại mật khẩu có dấu chấm
+                buttonToggleVisibility.setIcon(eyeOpen);  // Sử dụng eyeOpen icon
             } else {
-                txtPassword.setEchoChar((char) 0);
-                buttonToggleVisibility.setIcon(eyeOpenIcon); // Biểu tượng mở
+                txtPassword.setEchoChar((char) 0);  // Mật khẩu không có dấu chấm
+                buttonToggleVisibility.setIcon(eyeClose);  // Sử dụng eyeClose icon
             }
         });
+
 
         // nut dang nhap
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         JButton buttonLogin = new JButton("Đăng nhập");
+        buttonLogin.setFont(new Font("Aria", Font.BOLD, 20));
         buttonLogin.setFocusPainted(false); // Bỏ viền khi được chọn
         loginPanel.add(buttonLogin, gbc);
         // nut quen mat khau
@@ -95,6 +105,7 @@ public class LoginAdmin extends JFrame {
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         JButton buttonForgetPassword = new JButton("Quên mật khẩu");
+        buttonForgetPassword.setFont(new Font("Aria", Font.BOLD, 20));
         buttonForgetPassword.setFocusPainted(false); // Bỏ viền khi được chọn
         buttonForgetPassword.setBorderPainted(false); // Bỏ viền nút
         buttonForgetPassword.setContentAreaFilled(false); // Bỏ nền nút

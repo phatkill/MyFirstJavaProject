@@ -32,7 +32,6 @@ public class SendEmail {
             // Gửi email
             Transport.send(message);  // Gửi email qua giao thức SMTP
             System.out.println("Email đã được gửi thành công!");  // In ra thông báo thành công nếu email được gửi thành công
-
         } catch (MessagingException e) {  // Xử lý các lỗi nếu có trong quá trình gửi email
             e.printStackTrace();  // In ra thông tin lỗi
         }

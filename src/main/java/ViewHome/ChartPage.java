@@ -20,8 +20,8 @@ public class ChartPage extends Panel {
 
     public ChartPage() {
         setLayout(new BorderLayout());
-        JFreeChart barChart = createChart();
-        ChartPanel chartPanel = new ChartPanel(barChart);
+        JFreeChart barChart = createChart();// Tạo một biểu đồ thanh
+        ChartPanel chartPanel = new ChartPanel(barChart);// Tạo một bảng giao diện
         chartPanel.setPreferredSize(new Dimension(800, 600));
         add(chartPanel, BorderLayout.CENTER);
     }

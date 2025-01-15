@@ -110,7 +110,6 @@ public class LoginPupil extends JFrame {
             query.LoginUser(userName, password);
         });
     }
-
     public static void main(String[] args) {
         new LoginPupil();
     }

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class Query {
     private String loginUser = "SELECT * FROM TAIKHOAN WHERE CCCD = ? AND password = ?";
+
     public void LoginUser(String CCCD, String password) {
         try {
             Connection connection = JDBCConnect.getConnection();
@@ -21,10 +22,10 @@ public class Query {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                JOptionPane.showMessageDialog(null, "Login Success");
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
                 new User.Home(resultSet.getString("MAHS"));
             } else {
-                JOptionPane.showMessageDialog(null, "Login Failed");
+                JOptionPane.showMessageDialog(null, "Sai tài khoản hoặc mật khẩu, vui lòng thử lại");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
