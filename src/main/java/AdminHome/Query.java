@@ -61,7 +61,7 @@ public class Query {
             "FROM HOCSINH \n" +
             "JOIN DIEM \n" +
             "ON HOCSINH.MAHS = DIEM.MAHS \n" +
-            "WHERE HOCSINH.MAHS = ?;";
+            "WHERE HOCSINH.TEN= ?;";
 
     private String MAHS, HODEM, TEN, GIOITINH, NOISINHSONG, DIACHI, SODIENTHOAI, EMAIL;
     private float DIEM_TOAN, DIEM_VAN, DIEM_ANH, DIEM_VATLI_OR_LICHSU, DIEM_HOAHOC_OR_DIALI, DIEM_SINHHOC_OR_GDCD;
@@ -196,6 +196,7 @@ public class Query {
                 table.getColumnModel().getColumn(17).setCellEditor(editPupilButton);
                 stt++;
             }
+//            JOptionPane.showMessageDialog(n);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

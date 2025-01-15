@@ -54,7 +54,7 @@ public class ManagerPage extends JPanel {
         panelFilterFunction.add(searchFunction, BorderLayout.CENTER); // Thêm searchFunction vào trung tâm của panelFilterFunction
         searchFunction.setLayout(new FlowLayout());
 
-        JLabel searchLabel = new JLabel("Tìm kiếm Mã Học Sinh: ");
+        JLabel searchLabel = new JLabel("Tìm kiếm theo tên học sinh: ");
         Font fontFunction = new Font("Serif", Font.BOLD, 30); // Thiết lập font chữ
         searchLabel.setFont(fontFunction); // Đặt font chữ cho searchLabel
         searchFunction.add(searchLabel); // Thêm searchLabel vào searchFunction

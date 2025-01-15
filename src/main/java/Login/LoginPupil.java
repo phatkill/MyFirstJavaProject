@@ -90,6 +90,7 @@ public class LoginPupil extends JFrame {
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         JButton buttonLogin = new JButton("Đăng nhập");
+        buttonLogin.setFont(new Font("Aria", Font.BOLD, 20));
         buttonLogin.setFocusPainted(false); // Bỏ viền khi được chọn
         loginPanel.add(buttonLogin, gbc);
         // nut quen mat khau
@@ -97,6 +98,7 @@ public class LoginPupil extends JFrame {
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         JButton buttonForgetPassword = new JButton("Quên mật khẩu");
+        buttonForgetPassword.setFont(new Font("Aria", Font.BOLD, 20));
         buttonForgetPassword.setFocusPainted(false); // Bỏ viền khi được chọn
         buttonForgetPassword.setBorderPainted(false); // Bỏ viền nút
         buttonForgetPassword.setContentAreaFilled(false); // Bỏ nền nút

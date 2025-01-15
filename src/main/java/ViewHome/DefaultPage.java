@@ -22,22 +22,21 @@ public class DefaultPage extends JPanel {
         add(panelHeader, BorderLayout.NORTH);
 
 
-        // Create main panel
+        // Panel text
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Create JTextPane for displaying text
+        // tạo mot testPane để điền
         JTextPane textPane = new JTextPane();
-        textPane.setEditable(false); // Make the text pane non-editable
+        textPane.setEditable(false);
 
-        // Get the document and set up styles
-        StyledDocument doc = textPane.getStyledDocument();
-        SimpleAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setFontSize(attr, 30); // Increase font size
+        StyledDocument doc = textPane.getStyledDocument();// cho phép chỉnh sửa linh hoạt, dùng để liên kết vs texPane
+        SimpleAttributeSet attr = new SimpleAttributeSet();// nơi định nghĩa các thuộc tính như kích thước chữ, kiểu chữ, căn lề, ...
+        StyleConstants.setFontSize(attr, 30);
         StyleConstants.setFontFamily(attr, "Arial");
-        StyleConstants.setBold(attr, false);
-        StyleConstants.setLineSpacing(attr, 0.5f); // Increase line spacing
+        StyleConstants.setBold(attr, false);// không in đậm
+        StyleConstants.setLineSpacing(attr, 0.5f); // tang khoảng cách dòng
 
         SimpleAttributeSet headingAttr = new SimpleAttributeSet(attr);
         StyleConstants.setBold(headingAttr, true);
@@ -48,26 +47,25 @@ public class DefaultPage extends JPanel {
             doc.insertString(doc.getLength(), "Hướng dẫn cách dùng app\n\n\n", headingAttr);
             // Insert body text
             doc.insertString(doc.getLength(),
-                    "Đầu tiên khi bạn nhìn vào sẽ thấy ba nút, mỗi nút có một chức năng riêng, hãy cùng tôi điểm qua chức năng đầu tiên, Đó là chức năng mặc định:\n" +
+                    "Đầu tiên khi bạn nhìn vào sẽ thấy thanh menu gồm ba nút, mỗi nút có một chức năng riêng, hãy cùng tôi điểm qua chức năng đầu tiên, Đó là chức năng mặc định:\n" +
                             "    - page này sẽ giúp bạn biết cách dùng app\n" +
                             "Tiếp theo là chức năng quản lí trang chủ:\n" +
-                            "    - Giúp bạn đọc bảng và chỉnh sửa nó theo ý muốn của bạn( thêm, xóa, sửa)\n" +
+                            "    - Giúp bạn đọc bảng và chỉnh sửa nó theo ý muốn của bạn( thêm, xóa, sửa,...)\n" +
                             "Cuối cùng là biểu đồ:\n" +
                             "    - Bạn sẽ được nhìn tổng quát biểu đồ để hiểu hơn về thị trường điểm số ở môn đó của nước ta", attr);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
 
-        // Center align the text
+        // Tạo bộ thuộc tính căn giữa cho văn bản
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);// căn giữa, bắt đầu từ 0 đến hết
 
-        // Add JTextPane to JScrollPane for scrolling
+        // bỏ vảo jcrollPane cho dễ lướt
         JScrollPane scrollPane = new JScrollPane(textPane);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add main panel to DefaultPage
         add(mainPanel, BorderLayout.CENTER);
     }
 

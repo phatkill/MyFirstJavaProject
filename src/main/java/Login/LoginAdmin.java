@@ -119,11 +119,11 @@ public class LoginAdmin extends JFrame {
             String password = txtPassword.getText();
             Query query = new Query();
             if (userName.equals(tkAdmin) && password.equals(mkAdmin)) {
-                JOptionPane.showMessageDialog(null, "Login Success");
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 new Home();
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Login Failed");
+                JOptionPane.showMessageDialog(null, "Đăng nhập thất bại");
             }
         });
         // ---------------- xu li quen mat khau ----------------

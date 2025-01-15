@@ -21,6 +21,7 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor 
             }
         });
     }
+    //tùy chỉnh trình chỉnh sửa ô (cell editor)
     @Override
     public Object getCellEditorValue() {
         return null;
